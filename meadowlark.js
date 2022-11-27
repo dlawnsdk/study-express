@@ -47,10 +47,20 @@ app.use((req, res, next) =>{
     res.status(500)
     res.render('500')
 })
-*/
+
 app.listen(port, () => console.log(
     `Express started on http://localhost:${port};` +
     `press Ctrl-C to terminate`
 ))
+ */
+
+if(require.main === module){
+    app.listen(port, () => {
+        console.log(`Express started on http://localhost:${port}` +
+            '; press Ctrl-C to terminate.' )
+    })
+}else{
+    module.exports = app
+}
 
 
