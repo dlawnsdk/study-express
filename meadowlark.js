@@ -10,11 +10,20 @@ const expressHandlebars = require('express-handlebars')
 const app = express()
 const port = process.env.PORT || 3000
 
+const weatherMiddleware = require('./lib/middleware/weather')
+
 /**
  * 뷰 엔진 생성하고 Express에서 이 엔진을 기본값으로 사용
  */
 app.engine('handlebars', expressHandlebars({
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    helpers:{
+        section: function (name, options){
+            if(!this._sections) this._sections = {}
+            this._sections[name] = options.fn(this)
+            return null
+        },
+    },
 }))
 app.set('view engine', 'handlebars')
 
@@ -26,6 +35,11 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/', handlers.home)
 app.get('/about', handlers.about)
+app.get('/section-test', handlers.sectionTest)
+
+app.use(weatherMiddleware)
+
+//가장 마지막에 위치함 => 위 URL을 찾고 없는 경우 실행
 app.use(handlers.notFound)
 app.use(handlers.serverError)
 

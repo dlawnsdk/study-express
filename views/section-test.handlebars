@@ -1,0 +1,26 @@
+{{#section 'head'}}
+    <!-- 구글이 현재 페이지는 무시하게 만듦 -->
+    <!--
+    섹션?
+    뷰를 레이아웃의 부분에 끼워 넣을때 사용
+    helpers:{
+        section: function (name, options){
+            if(!this._sections) this._sections = {}
+            this._sections[name] = options.fn(this)
+            return null
+        },
+    }
+    app.js에 app.engine에 추가
+     -->
+    <meta name="robots" content="noindex">
+{{/section}}
+
+<h1>Test Page</h1>
+<p>We're testing some script stuff.</p>
+
+{{#section 'scripts'}}
+    <script>
+        document.querySelector('body')
+                .insertAdjacentHTML('beforeEnd', '<small>(scripting works!)</small>')
+    </script>
+{{/section}}
