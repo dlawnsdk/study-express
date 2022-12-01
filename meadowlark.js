@@ -1,7 +1,11 @@
 /**
  * './'는 node_modules 디렉토리에서 찾지 않겠다는 뜻
  */
-const fortune = require('./lib/fortune')
+
+
+/**
+ * 원래라면 server.js에서 url 경로를 받지만 handlers라는 미들웨러를 만들어서 handlers.js에서 컨트롤한다
+ */
 const handlers = require('./lib/handlers')
 
 const express = require('express')
@@ -32,7 +36,7 @@ app.set('view engine', 'handlebars')
 app.use(express.static(__dirname + '/public'))
 
 /**
- * url을 받아서 view 페이지 렌더링
+ * url을 받아서 해당 url에 맞는 handlers의 메소드 실행하여 view 렌더링
  */
 
 app.get('/', handlers.home)
@@ -43,6 +47,7 @@ app.use(bodyParser.json())
 app.get('/newsletter-signup', handlers.newsletterSignup)
 app.post('/newsletter-signup/process', handlers.newsletterSignupProcess)
 app.get('/newsletter-signup/thank-you', handlers.newsletterSignupThankYou)
+app.get('/attendance', handlers.attendance)
 
 app.get('/newsletter', handlers.newsletter)
 app.post('/api/newsletter-signup', handlers.api.newsletterSignup)
