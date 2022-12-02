@@ -4,7 +4,7 @@
 
 
 /**
- * 원래라면 server.js에서 url 경로를 받지만 handlers라는 미들웨러를 만들어서 handlers.js에서 컨트롤한다
+ * 원래라면 server.js에서 url 경로를 받지만 handlers라는 미들웨어를 만들어서 handlers.js에서 컨트롤한다
  */
 const handlers = require('./lib/handlers')
 
@@ -48,6 +48,8 @@ app.get('/newsletter-signup', handlers.newsletterSignup)
 app.post('/newsletter-signup/process', handlers.newsletterSignupProcess)
 app.get('/newsletter-signup/thank-you', handlers.newsletterSignupThankYou)
 app.get('/attendance', handlers.attendance)
+app.get('/freeBoard', handlers.freeBoard)
+app.get('/freeEdit', handlers.freeEdit)
 
 app.get('/newsletter', handlers.newsletter)
 app.post('/api/newsletter-signup', handlers.api.newsletterSignup)

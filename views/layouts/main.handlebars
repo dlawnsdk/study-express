@@ -1,21 +1,25 @@
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 <script>
-$( document ).ready(function() {
+    $( document ).ready(function() {
         console.log("사이트 서버 시작")
-});
+    });
 
-function about(){
-    location.href = "/about"
-}
+    function about(){
+        location.href = "/about"
+    }
 
-function attendance() {
-    location.href = "/attendance"
-}
+    function attendance() {
+        location.href = "/attendance"
+    }
 
-function home(){
-    location.href = "/"
-}
+    function home(){
+        location.href = "/"
+    }
+    function freeBoard(){
+        location.href = "/freeBoard"
+    }
+
 </script>
 <!doctype html>
 <html>
@@ -36,7 +40,7 @@ function home(){
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li onclick="home()"><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
                     <li onclick="attendance()"><a href="#" class="nav-link px-2 text-white">출석</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+                    <li onclick="freeBoard()"><a href="#" class="nav-link px-2 text-white">자유게시판</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                     <li onclick="about()"><a href="#" class="nav-link px-2 text-white">About</a></li>
                 </ul>
@@ -53,6 +57,5 @@ function home(){
         </div>
     </header>
         {{{body}}}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
 </html>
