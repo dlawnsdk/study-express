@@ -7,8 +7,24 @@
  * 원래라면 server.js에서 url 경로를 받지만 handlers라는 미들웨어를 만들어서 handlers.js에서 컨트롤한다
  */
 const handlers = require('./lib/handlers')
-
+/**
+ * express 사용
+ */
 const express = require('express')
+
+/**
+ * redis 설정
+ */
+const redis = require('redis')
+const redisClient = redis.createClient({ legacyMode: true })
+redisClient.on('connect', () =>{
+    console.info('Redis Connected!!')
+})
+redisClient.on('error', (err) => {
+    console.error('Redis Client Error!!', err)
+})
+redisClient.connect().then()
+const redisCli = redisClient.v4
 
 const expressHandlebars = require('express-handlebars')
 const app = express()
@@ -16,7 +32,11 @@ const port = process.env.PORT || 3000
 
 const weatherMiddleware = require('./lib/middleware/weather')
 
+/**
+ * POST를 사용하는 경우 인코드된 바디를 분석하는 미들웨어
+ */
 const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
 
 /**
  * 뷰 엔진 생성하고 Express에서 이 엔진을 기본값으로 사용
@@ -44,49 +64,20 @@ app.get('/about', handlers.about)
 app.get('/section-test', handlers.sectionTest)
 app.use(bodyParser.json())
 
-app.get('/newsletter-signup', handlers.newsletterSignup)
-app.post('/newsletter-signup/process', handlers.newsletterSignupProcess)
-app.get('/newsletter-signup/thank-you', handlers.newsletterSignupThankYou)
 app.get('/attendance', handlers.attendance)
 app.get('/freeBoard', handlers.freeBoard)
 app.get('/freeEdit', handlers.freeEdit)
-
-app.get('/newsletter', handlers.newsletter)
-app.post('/api/newsletter-signup', handlers.api.newsletterSignup)
+app.post('/saveEdit', handlers.freeBoardContents)
 
 app.use(weatherMiddleware)
-app.use(bodyParser.urlencoded({ extended: true }))
 
-//가장 마지막에 위치함 => 위 URL을 찾고 없는 경우 실행
+/**
+ * 가장 마지막에 위치함 => 위 URL을 찾고 없는 경우 실행
+ */
 app.use(handlers.notFound)
 app.use(handlers.serverError)
 
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
-
-/*
-app.get('/', (req, res) => res.render('home'))
-
-app.get('/about', (req, res) => {
-    res.render('about', {fortune:fortune.getFortune()})
-})
-
-// 404 Custom page
-app.use((req, res) =>{
-    res.status(404)
-    res.render('404')
-})
-
-//500 Custom page
-app.use((req, res, next) =>{
-    res.status(500)
-    res.render('500')
-})
-
-app.listen(port, () => console.log(
-    `Express started on http://localhost:${port};` +
-    `press Ctrl-C to terminate`
-))
- */
 
 if(require.main === module){
     app.listen(port, () => {
