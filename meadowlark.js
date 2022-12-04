@@ -14,7 +14,7 @@ const express = require('express')
 
 /**
  * redis 설정
- */
+
 const redis = require('redis')
 const redisClient = redis.createClient({ legacyMode: true })
 redisClient.on('connect', () =>{
@@ -25,6 +25,20 @@ redisClient.on('error', (err) => {
 })
 redisClient.connect().then()
 const redisCli = redisClient.v4
+ */
+
+/**
+ * db connection
+ */
+const connection = require('./lib/dataBase')
+const result = connection.query(
+    "SELECT ID, NAME FROM USER"
+).then((result) => {
+    console.log(result[0])
+})
+//SQL 실행 결과가 도착하는 것을 기다리지 않음
+console.log("서버 실행")
+
 
 const expressHandlebars = require('express-handlebars')
 const app = express()
