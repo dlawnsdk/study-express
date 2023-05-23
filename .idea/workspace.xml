@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="93213f10-5b95-48ee-be82-94a6a2be590d" name="Changes" comment="단위테스트">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/handlers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meadowlark.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +113,8 @@
       <workItem from="1670035892531" duration="7465000" />
       <workItem from="1670043937862" duration="18350000" />
       <workItem from="1670131412507" duration="6996000" />
-      <workItem from="1670234724614" duration="15022000" />
+      <workItem from="1670234724614" duration="15098000" />
+      <workItem from="1670416856264" duration="94000" />
     </task>
     <task id="LOCAL-00001" summary="모듈 생성">
       <created>1669373504619</created>
